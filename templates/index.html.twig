@@ -1,0 +1,78 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <br>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} col-md-10 offset-md-1" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="container-fluid">
+        <div class="col-md-10 offset-md-1">
+            <h4 class="mt-5 mb-3">Create new fruit page</h4>
+            <form action="{{ path('create-fruit') }}" method="POST">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" aria-label="Name" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Genus</label>
+                            <input type="text" class="form-control" id="genus" name="genus" placeholder="Genus" aria-label="Genus" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Family</label>
+                            <input type="text" class="form-control" id="family" name="family" placeholder="Family" aria-label="Family" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Order</label>
+                            <input type="text" class="form-control" id="order" name="order_f" placeholder="Order" aria-label="Order" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Carbohydrates</label>
+                            <input type="text" class="form-control" id="carbohydrates" name="carbohydrates" placeholder="Carbohydrates" aria-label="Carbohydrates" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Protein</label>
+                            <input type="text" class="form-control" id="protein" name="protein" placeholder="Protein" aria-label="Protein" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Fat</label>
+                            <input type="text" class="form-control" id="fat" name="fat" placeholder="Fat" aria-label="Fat" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Calories</label>
+                            <input type="text" class="form-control" id="calories" name="calories" placeholder="Calories" aria-label="Calories" required>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <div class="form-group">
+                            <label class="control-label mb-1">Sugar</label>
+                            <input type="text" class="form-control" id="sugar" name="sugar" placeholder="Sugar" aria-label="Sugar" required>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" style="min-width:140px;">Create a fruit</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

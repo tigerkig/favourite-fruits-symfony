@@ -1,0 +1,83 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} col-md-10 offset-md-1" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="col-md-10 offset-md-1">
+            <h4 class="mt-5 mb-3">All fruits page</h4>
+
+            <div class="row mb-3">
+                <form class="d-flex col-md-6">
+                    <input class="form-control me-2" type="search" name="name" placeholder="Search by name" aria-label="Search">
+                </form>
+                <form class="d-flex col-md-6">
+                    <input class="form-control me-2" type="search" name="family" placeholder="Search by family" aria-label="Search">
+                </form>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Genus</th>
+                        <th scope="col">Family</th>
+                        <th scope="col">Order</th>
+                        <th scope="col">Carbohydrates</th>
+                        <th scope="col">Protein</th>
+                        <th scope="col">Fat</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Sugar</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if fruits is empty %}
+                        <tr>
+                            <td colspan='11' class="text-center">No data</td>
+                        </tr>
+                    {% else %}
+                        {% for fruit in fruits %}
+                            {%  set row_counter = loop.index %}
+                            <tr>
+                                <th scope="row">{{ ( page - 1 ) * 5 + row_counter }}</th>
+                                <td>{{ fruit['name'] }}</td>
+                                <td>{{ fruit['genus'] }}</td>
+                                <td>{{ fruit['family'] }}</td>
+                                <td>{{ fruit['order'] }}</td>
+                                <td>{{ fruit['nutritions']['carbohydrates'] }}</td>
+                                <td>{{ fruit['nutritions']['protein'] }}</td>
+                                <td>{{ fruit['nutritions']['fat'] }}</td>
+                                <td>{{ fruit['nutritions']['calories'] }}</td>
+                                <td>{{ fruit['nutritions']['sugar'] }}</td>
+                                <td>
+                                    <div class="cat comedy">
+                                        <label>
+                                            <input type="checkbox" onclick="favorite_fruit({{ fruit['id'] }}, this)"><span>Favorite fruit</span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-10 offset-md-1">
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    {{ knp_pagination_render(fruits) }}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+{% endblock %}

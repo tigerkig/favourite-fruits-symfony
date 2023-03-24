@@ -1,0 +1,55 @@
+.fa-stack[data-count]:after {
+    position: absolute;
+    right: -10%;
+    top: 1%;
+    content: attr(data-count);
+    font-size: 50%;
+    padding: .6em;
+    border-radius: 999px;
+    line-height: .75em;
+    color: white;
+    background: rgba(255, 0, 0, .85);
+    text-align: center;
+    min-width: 2em;
+    font-weight: bold;
+}
+
+.cat {
+    background-color: #104068;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    overflow: hidden;
+    float: left;
+}
+
+.cat label {
+    float: left;
+    line-height: 2.5em;
+    width: 8.0em;
+    height: 2.5em;
+}
+
+.cat label span {
+    text-align: center;
+    display: block;
+    cursor: pointer;
+}
+
+.cat label input {
+    position: absolute;
+    display: none;
+    color: #fff !important;
+}
+
+.cat label input+span {
+    color: #fff;
+}
+
+.cat input:checked+span {
+    color: #ffffff;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+.comedy input:checked+span {
+    background-color: #1BB8F7;
+}
