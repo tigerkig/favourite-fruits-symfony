@@ -61,32 +61,19 @@ class FruitController extends AbstractController
             'Content-Type' => 'text/plain'
         ];
 
-        // $body = '{
-        //     "genus": "'.$request->request->get('genus').'",
-        //     "name": "'.$request->request->get('name').'",
-        //     "family": "'.$request->request->get('family').'",
-        //     "order": "'.$request->request->get('order_f').'",
-        //     "nutritions": {
-        //         "carbohydrates": '.$request->request->get('carbohydrates').',
-        //         "protein": '.$request->request->get('protein').',
-        //         "fat": '.$request->request->get('fat').',
-        //         "calories": '.$request->request->get('calories').',
-        //         "sugar": '.$request->request->get('sugar').'
-        //     }
-        // }';
         $body = '{
-            "genus": "Fragaria",
-            "name": "test",
-            "family": "Rosaceae",
-            "order": "Rosales",
+            "genus": "'.$request->request->get('genus').'",
+            "name": "'.$request->request->get('name').'",
+            "family": "'.$request->request->get('family').'",
+            "order": "'.$request->request->get('order_f').'",
             "nutritions": {
-              "carbohydrates": 5.5,
-              "protein": 0,
-              "fat": 0.4,
-              "calories": 29,
-              "sugar": 5.4
+                "carbohydrates": '.$request->request->get('carbohydrates').',
+                "protein": '.$request->request->get('protein').',
+                "fat": '.$request->request->get('fat').',
+                "calories": '.$request->request->get('calories').',
+                "sugar": '.$request->request->get('sugar').'
             }
-          }';
+        }';
 
         $client = HttpClient::create();
         $response = $client->request(
