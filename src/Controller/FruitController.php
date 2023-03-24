@@ -61,19 +61,19 @@ class FruitController extends AbstractController
             'Content-Type' => 'text/plain'
         ];
 
-        $body = '{
-            "genus": "'.$request->request->get('genus').'",
-            "name": "'.$request->request->get('name').'",
-            "family": "'.$request->request->get('family').'",
-            "order": "'.$request->request->get('order_f').'",
-            "nutritions": {
-                "carbohydrates": '.$request->request->get('carbohydrates').',
-                "protein": '.$request->request->get('protein').',
-                "fat": '.$request->request->get('fat').',
-                "calories": '.$request->request->get('calories').',
-                "sugar": '.$request->request->get('sugar').'
-            }
-        }';
+        $body = [
+            "genus"   => $request->request->get('genus'),
+            "name"    => $request->request->get('name'),
+            "family"  => $request->request->get('family'),
+            "order"   => $request->request->get('order_f'),
+            "nutritions" => [
+                "carbohydrates" => $request->request->get('carbohydrates'),
+                "protein" => $request->request->get('protein'),
+                "fat" => $request->request->get('fat'),
+                "calories" => $request->request->get('calories'),
+                "sugar" => $request->request->get('sugar')
+            ]
+        ];
 
         $client = HttpClient::create();
         $response = $client->request(
@@ -81,21 +81,21 @@ class FruitController extends AbstractController
             $this->getParameter('app.api_url'),
             [
                 'headers' => $headers,
-                'body' => $body
+                'body' => json_encode($body)
             ]
         );
         $statusCode = $response->getStatusCode();
         $content = $response->toArray();
 
         if(isset($content['success']) && $statusCode === 200) {
-            // $email = (new Email())
-            //     ->from($this->getParameter('app.from_email'))
-            //     ->to($this->getParameter('app.to_email'))
-            //     ->subject('Created New Fruit!')
-            //     ->text('You have created new fruit!')
-            //     ->html('<p>You can create more than.</p>');
+            $email = (new Email())
+                ->from($this->getParameter('app.from_email'))
+                ->to($this->getParameter('app.to_email'))
+                ->subject('Created New Fruit!')
+                ->text('You have created new fruit!')
+                ->html('<p>You can create more than.</p>');
 
-            // $mailer->send($email);
+            $mailer->send($email);
             $this->addFlash('success', 'You have created a new fruit!');
             return $this->redirectToRoute('allFruits');
         } else {
